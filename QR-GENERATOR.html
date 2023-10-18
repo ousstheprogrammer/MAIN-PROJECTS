@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qr code Generator</title>
+    <link rel="stylesheet" href="project4.css">
+</head>
+<body>
+    <div class="container"> 
+        <p>ENTER YOUR TEXT OR URL</p> 
+        <!-- Added the missing ID for the input -->
+        <input type="text" id="QrText" placeholder="TEXT or URL">
+        <div id="imageBox">
+            <img src="" id="QrImage">
+        </div>
+        <button onclick="generateQR()">Generate QR code</button>
+     </div>
+     
+    <script>
+let QrImage = document.getElementById("QrImage");
+let QrText = document.getElementById("QrText");
+let imgBox = document.getElementById("imageBox"); // Define the imgBox
+
+function generateQR() {
+    QrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(QrText.value);
+    imgBox.classList.add("show-img"); // Use classList with uppercase 'L'
+}
+</script>
+</body>
+</html>
