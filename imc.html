@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BMI Calculator</title>
+  <style>
+     body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: gold;
+        }
+        .calculator {
+      width: 300px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      border-spacing: 20px;
+    }
+        .calculator input[type=text]{
+            width:100%;
+            margin-bottom: 10px;
+            border-radius: 20px;
+            border-color: gold;
+            padding: 10px;
+        }
+        .calculator input[type=submit]{
+            margin-bottom: 10px;
+            background-color: gold;
+            border-radius: 20px;
+            padding: 10px;
+
+        }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h2>BMI Calculator</h2>
+    <form id="bmiForm" onsubmit="calculateBMI(); return false;">
+      <label for="weight">Weight (kg):</label>
+      <input type="text" id="weight" required />
+
+      <label for="height">Height (cm):</label>
+      <input type="text" id="height" required />
+
+      <input type="submit" value="Calculate BMI" />
+
+      <h3>Result:</h3>
+      <p id="result"></p>
+    </form>
+  </div>
+  <script>
+    function calculateBMI() {
+      var weight = parseFloat(document.getElementById('weight').value);
+      var height = parseFloat(document.getElementById('height').value);
+
+      // Convert height from cm to meters
+      height = height / 100;
+
+      // Calculate BMI
+      var bmi = weight / (height * height);
+
+      // Display the result
+      var resultElement = document.getElementById('result');
+      resultElement.innerHTML = 'Your BMI: ' + bmi.toFixed(2);
+
+      // Interpret the BMI category
+      var category;
+      if (bmi < 18.5) {
+        category = prompt('Underweight');
+      } else if (bmi >= 18.5 && bmi < 25) {
+        category = prompt('Normal weight');
+      } else if (bmi >= 25 && bmi < 30) {
+        category = prompt('Overweight');
+      } else {
+        category = prompt('Obese');
+      }
+
+      // Display the BMI category
+      resultElement.innerHTML += '<br>Category: ' + category;
+    }
+  </script>
+</body>
+</html>
