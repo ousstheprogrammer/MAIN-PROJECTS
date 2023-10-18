@@ -1,0 +1,82 @@
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="project1.css">
+    <title>weather app</title>
+    <script>
+        function myfunction() {
+            document.getElementById("demo-text").innerHTML = "yep.";
+        }
+
+        async function checkWeather(city) {
+            const apiKey = "1503b291551d59deb8d8fe52f8833eef";
+            const baseApiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+            const response = await fetch(`${baseApiUrl}${city}&appid=${apiKey}`);
+            const data = await response.json();
+
+            document.querySelector(".city").innerHTML = data.name;
+            document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
+            document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+            document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
+
+            // Update weather icon
+            const weatherIconElement = document.querySelector(".weather-icon");
+            const weatherId = data.weather[0].id;
+            const iconFilename = getIconFilenameForWeatherId(weatherId);
+            weatherIconElement.src = `.images${iconFilename}`;
+        }
+
+        function getIconFilenameForWeatherId(weatherId) {
+            if (weatherId >= 200 && weatherId <= 232) {
+                return "thunderstorm.png";
+            } else if (weatherId >= 300 && weatherId <= 321) {
+                return "drizzle.png";
+            } else if (weatherId >= 500 && weatherId <= 531) {
+                return "rain.png";
+            } else if (weatherId >= 600 && weatherId <= 622) {
+                return "snow.png";
+            } else if (weatherId >= 701 && weatherId <= 781) {
+                return "atmosphere.png"; 
+            } else if (weatherId === 800) {
+                return "clear.png";
+            } else if (weatherId >= 801 && weatherId <= 804) {
+                return "clouds.png";
+            } else {
+                return "default.png"; // fallback icon
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="card">
+        <div class="search">
+            <input type="text" placeholder="enter city name" spellcheck="false">
+            <button onclick="checkWeather(document.querySelector('.search input').value)"><img src="C:\Users\huawei\OneDrive\Bureau\Zouini_Oussama_D1_info1\Documents\images\images\search.png"></button>
+        </div>
+        <div class="weather">
+            <img src="C:\Users\huawei\OneDrive\Bureau\Zouini_Oussama_D1_info1\Documents\images\images\rain.png" class="weather-icon">
+            <br>
+            <h1 class="temp">22°C</h1>
+            <br>
+            <h2 class="city">Default City</h2>
+            <div class="details">
+                <div class="col">
+                    <img src="C:\Users\huawei\OneDrive\Bureau\Zouini_Oussama_D1_info1\Documents\images\images\humidity.png">
+                    <div>
+                        <p class="humidity">50%</p>
+                        <p>humidity</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="C:\Users\huawei\OneDrive\Bureau\Zouini_Oussama_D1_info1\Documents\images\images\wind.png">
+                    <div>
+                        <p class="wind">50 km/h</p>
+                        <p>wind speed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div
+</body>
+</html>

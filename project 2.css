@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif; /* Enclosed 'Poppins' in quotes */
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #153677, #4e085f);
+    padding: 10px;
+}
+
+.todo-app {
+    width: 100%;
+    max-width: 450px;
+    background: #fff;
+    margin: 100px auto 20px;
+    padding: 70px;
+    border-radius: 10px;
+}
+
+.todo-app h2 {
+    color: #002765;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.todo-app h2 img {
+    width: 30px;
+    margin-left: 10px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #edeef0;
+    border-radius: 20px;
+    margin-left: 20px;
+    margin-bottom: 25px;
+}
+
+input,
+button {
+    border: none;
+    outline: none;
+}
+
+input {
+    flex: 1;
+    background: transparent;
+    padding: 10px;
+}
+
+button {
+    background: #ff5945;
+    padding: 16px 50px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 40px;
+}
+
+/* ... (rest of your CSS code) ... */
+
+ul li {
+    /* ... (existing properties) ... */
+    padding-left: 40px;  /* Increase left padding to accommodate the circle */
+}
+
+ul li::before {
+    content: '';
+    position: absolute;
+    height: 20px;  /* Diameter of the circle */
+    width: 20px;  /* Diameter of the circle */
+  
+}
